@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
+VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SubidaFicherosMVC", "SubidaFicherosMVC\SubidaFicherosMVC.csproj", "{221C7F7B-0871-4DF8-9BAC-03D4CEF988F2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestMvc", "TestMvc\TestMvc.csproj", "{0E1EB113-B585-4C90-A2A1-CFB86166C0F7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{221C7F7B-0871-4DF8-9BAC-03D4CEF988F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{221C7F7B-0871-4DF8-9BAC-03D4CEF988F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{221C7F7B-0871-4DF8-9BAC-03D4CEF988F2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0E1EB113-B585-4C90-A2A1-CFB86166C0F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E1EB113-B585-4C90-A2A1-CFB86166C0F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E1EB113-B585-4C90-A2A1-CFB86166C0F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E1EB113-B585-4C90-A2A1-CFB86166C0F7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

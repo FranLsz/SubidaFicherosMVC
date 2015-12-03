@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -33,22 +34,46 @@ namespace SubidaFicherosMVC.Controllers
                 tipoAlmacen = "base64";
             if (almacen == 3)
                 tipoAlmacen = "binario";
+            if (almacen == 4)
+                tipoAlmacen = "azure";
             ViewBag.almacen = tipoAlmacen;
             ViewBag.tipoFichero = new SelectList(tipos, "id", "nombre");
             return View(new Ficheros());
         }
 
+        public ActionResult GetBase64Azure(string nombre)
+        {
+            var cu = ConfigurationManager.AppSettings["AccountnameAzureStorage"];
+            var cl = ConfigurationManager.AppSettings["PasswordAzureStorage"];
+            var co = ConfigurationManager.AppSettings["ContainerAzureStorage"];
+
+            var sto = new AzureStorageUtil(cu, cl, co);
+
+            var data = sto.RecuperarFichero(nombre, co);
+            return View(Convert.ToBase64String(data));
+        }
+
         public FileResult DownloadFile(int id, int tipo = 0)
         {
-            byte[] fichero;
+            byte[] fichero = new byte[] { };
             var f = db.Ficheros.Find(id);
             if (tipo == 0)
             {
                 fichero = Convert.FromBase64String(f.datos);
             }
-            else
+            else if (tipo == 1)
             {
                 fichero = f.datosb;
+            }
+            else if (tipo == 2)
+            {
+                var cu = ConfigurationManager.AppSettings["AccountnameAzureStorage"];
+                var cl = ConfigurationManager.AppSettings["PasswordAzureStorage"];
+                var co = ConfigurationManager.AppSettings["ContainerAzureStorage"];
+
+                var sto = new AzureStorageUtil(cu, cl, co);
+
+                fichero = sto.RecuperarFichero(f.datos, co);
             }
             return File(fichero, System.Net.Mime.MediaTypeNames.Application.Octet, f.nombre);
         }
@@ -110,6 +135,22 @@ namespace SubidaFicherosMVC.Controllers
                         Console.WriteLine(e);
                     }
                 }
+            }
+            else if (model.tipo == "azure")
+            {
+                var cu = ConfigurationManager.AppSettings["AccountnameAzureStorage"];
+                var cl = ConfigurationManager.AppSettings["PasswordAzureStorage"];
+                var co = ConfigurationManager.AppSettings["ContainerAzureStorage"];
+
+                var az = new AzureStorageUtil(cu, cl, co);
+                var n = Guid.NewGuid();
+                var ext = fichero.FileName.Substring(fichero.FileName.LastIndexOf("."));
+                az.SubirFichero(fichero.InputStream, n + ext);
+                model.datos = n + ext;
+                model.nombre = fichero.FileName;
+
+                db.Ficheros.Add(model);
+                db.SaveChanges();
             }
 
 

@@ -45,4 +45,19 @@
        }, new { target = "_blank" })
         }
     }
+    else if (item.tipo.Contains("azure"))
+    {
+        if (item.tipoFichero == 1)
+        {
+            @Html.Action("GetBase64Azure", new { nombre = item.datos })
+
+            @*<img src="data:image/jpeg;base64, @Html.Action("GetBase64Azure", item.nombre)"/>*@
+        }
+        else
+        {
+            Html.ActionLink(@item.nombre, "DownloadFile", new { id = @item.id, tipo = 2 }, new { target = "_blank" });
+        }
+
+
+    }
 }

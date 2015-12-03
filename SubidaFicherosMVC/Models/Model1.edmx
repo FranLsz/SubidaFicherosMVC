@@ -10,7 +10,7 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="nombre" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="nombre" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="datos" Type="ntext" Nullable="false" />
           <Property Name="datosb" Type="varbinary(max)" />
           <Property Name="tipo" Type="nchar" MaxLength="50" Nullable="false" />
@@ -29,7 +29,7 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="nombre" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="datos" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="datosb" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="tipo" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
